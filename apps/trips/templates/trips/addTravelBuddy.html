@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Travel Dashboard</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-beta/css/materialize.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-beta/js/materialize.min.js"></script>
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+
+    <style>
+      * {box-sizing: border-box}
+      .container {
+        margin: 30px;
+      }
+      main, section {
+        display: inline-block;
+      }
+      main {
+        width: 500px;
+      }
+      section {
+        width: 300px;
+        margin: 50px;
+      }
+      nav a {
+        float: right;
+        margin-right: 100px;
+      }
+      nav p {
+        display: inline;
+        margin-left: 50px;
+      }
+      .activity {
+        margin: 20px;
+        background-color: pink;
+        border-radius: 5px;
+        height: 50px;
+        text-align: center;
+        padding: 10px;
+      }
+      #add-link {
+        margin: 30px;
+        float: right;
+        font-size: 2em;
+      }
+
+
+    </style>
+
+  </head>
+  <body>
+    <nav>
+      <a href="/logout">Logout</a>
+      <a href="/profile">Home</a>
+      <p>Hello, {{user_signed_in.first_name}}!</p>
+    </nav>
+
+    <div class="container">
+      {% if messages %}
+      <ul class="messages">
+        {% for message in messages %}
+        <li{% if message.error %} class="{{ message.error }}"{% endif %}>{{ message }}</li>
+        {% endfor %}
+      </ul>
+      {% endif %}
+
+      <a href="/trips/plan/{{trip.id}}">Back to Trip</a>
+      
+
+      <h2>Invited</h2>
+      {% for user in invited%}
+      <p>{{user.first_name}} {{user.last_name}}</p>
+      {% endfor %}
+
+      <h2>Attending</h2>
+      {% for user in attended_by %}
+      <p>{{user.first_name}} {{user.last_name}}</p>
+      {% endfor %}
+    </div>
+  </body>
+</html>

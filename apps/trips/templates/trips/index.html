@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    {% load static %}
+    <meta charset="utf-8">
+    <meta name="google-signin-client_id" content="1092107993480-m2hvt25q9jl4m7a9a2pqk3hb3oag439v.apps.googleusercontent.com">
+    <title>Login and Registration</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-beta/css/materialize.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-beta/js/materialize.min.js"></script>
+    <script src="https://apis.google.com/js/platform.js" async defer></script>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="{% static 'trips/css/main.css' %}">
+  </head>
+  <body>
+    <div class="background-welcome">
+    {% if messages %}
+    <ul class="messages">
+      {% for message in messages %}
+      <li{% if message.error %} class="{{ message.error }}"{% endif %}>{{ message }}</li>
+      {% endfor %}
+    </ul>
+    {% endif %}
+
+    <h1 id="welcome-title">Welcome!</h1>
+      <div class="block welcome">
+        <h2>Signin</h2>
+        <form action="/signin/process" method="POST">{%csrf_token%}
+          <label>
+            Email:
+            <input type="text" name="email">
+          </label>
+          <label>
+            Password:
+            <input type="password" name="password">
+          </label>
+          <div class="text-right">
+            <button type="submit" class="btn btn-primary">Signin</button>
+          </div>
+        </form>
+        <div class="g-signin2" data-onsuccess="onSignIn"></div>
+        <p>New?<a href="/register"> Register here</a></p>
+      </div>
+    </div>
+
+    <script>
+    gapi.load('auth2', function(){
+      gapi.auth2.init();
+    });
+    function onSignIn(googleUser) {
+      var profile = googleUser.getBasicProfile();
+      console.log('ID: ' + profile.getId()); // Do not send to your backend! Use an ID token instead.
+      console.log('Name: ' + profile.getName());
+      console.log('Image URL: ' + profile.getImageUrl());
+      console.log('Email: ' + profile.getEmail()); // This is null if the 'email' scope is not present.
+      var id_token = googleUser.getAuthResponse().id_token;
+      var xhr = new XMLHttpRequest();
+      xhr.open('POST', 'https://signin/google');
+      xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+      xhr.onload = function() {
+        console.log('Signed in as: ' + xhr.responseText);
+      };
+      xhr.send('idtoken=' + id_token);
+    }
+
+    if (auth2.isSignedIn.get()) {
+      var profile = auth2.currentUser.get().getBasicProfile();
+      console.log('ID: ' + profile.getId());
+      console.log('Full Name: ' + profile.getName());
+      console.log('Given Name: ' + profile.getGivenName());
+      console.log('Family Name: ' + profile.getFamilyName());
+      console.log('Image URL: ' + profile.getImageUrl());
+      console.log('Email: ' + profile.getEmail());
+    }
+
+
+    </script>
+    </div>
+  </body>
+</html>

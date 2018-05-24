@@ -1,0 +1,285 @@
+*{
+    margin:0px;
+    padding:0px;
+}
+html, body {
+    height: 100%;
+}
+.background-welcome{
+    width: 100%;
+    min-height: 100%;
+    background: url("../images/greece1.jpg") no-repeat center center fixed;
+    background-size:cover;
+}
+
+label{
+    display: block;
+}
+
+#welcome-title {
+    text-align: center;
+    padding-top:40px;
+    margin-bottom:20px;
+    font-size:60px;
+}
+.welcome {
+    width:30%;
+    margin:auto;
+    background-color: rgba(0, 0, 0, 0.6);
+    padding:30px;
+    border-radius:5px;
+}
+
+.block h2, .block form label, #welcome-title,.block input{
+    color:whitesmoke;
+}
+
+input[type=text]:focus{
+    border-color: inherit;
+    -webkit-box-shadow: none;
+    box-shadow: none;
+}
+
+.block p{
+    color:whitesmoke;
+    text-align: center;
+    margin:0px;
+    padding:0px;
+}
+
+/* third party login */
+.g-signin2{
+    display: none;
+}
+/*FLASH MESSAGES*/
+.messages{
+    text-align: center;
+    color:whitesmoke;
+    padding:10px;
+}
+/*REGISTER PAGE*/
+.background-register{
+    width: 100%;
+    min-height: 100%;
+    background: url("../images/caves.jpg") no-repeat center center fixed;
+    background-size:cover;
+}
+.register{
+    width:50%;
+    margin:auto;
+    background-color: rgba(0, 0, 0, 0.6);
+    padding:30px;
+    border-radius:5px;
+}
+
+#register-title{
+    color:whitesmoke;
+    text-align: center;
+    margin-top:15px;
+    margin-bottom:15px;
+    font-size:60px;
+}
+/*NAVIGATION*/
+nav{
+    background-color: #3d69d6;
+}
+nav a {
+    float: right;
+    margin-right: 100px;
+}
+nav p {
+    display: inline-block;
+    margin-left: 50px;
+}
+/*PROFILE PAGE*/
+.background-profile{
+    width: 100%;
+    min-height: 100%;   
+}
+.background-profile::after {
+    content: "";
+    background: url("../images/boat.jpg") no-repeat center center fixed;
+    background-size:cover;
+    opacity: 0.3;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    position: absolute;
+    z-index: -1;   
+  }
+.container{
+    margin:auto;
+}
+#add-link {
+    margin: 30px;
+    float: right;
+    font-size: 2em;
+}
+/*INVITED*/
+.invited {
+    width:20%;
+    margin:20px 0px;
+    padding:15px;
+    border-radius: 5px;
+    background-color: rgba(214, 61, 67, 0.6);
+    color:whitesmoke;
+    text-align: center;
+}
+.join-trip{
+    display: inline-block;
+    margin-left:10px;
+}
+/*TRIP*/
+.background-trip{
+    width: 100%;
+    min-height: 100%;   
+}
+.background-trip::after {
+    content: "";
+    background: url("../images/boat.jpg") no-repeat center center fixed;
+    background-size:cover;
+    opacity: 0.3;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    position: absolute;
+    z-index: -1;   
+}
+main, section {
+    display: inline-block;
+    vertical-align: top;
+}
+main {
+    width: 70%;
+}
+.proposed{
+    width:30%;
+}
+
+.background-trip h3{
+    font-size:50px;
+}
+
+
+.activity{
+    display: table;
+    margin:auto;
+    width:300px;
+    height:90px;
+    border-radius:5px;
+    box-shadow: 1px 1px 2px 1px #000000;
+    cursor:pointer;
+    margin-bottom:10px;
+    background-color: rgba(0, 0, 0, 0.6);
+}
+.activity:hover {
+    position:relative;
+    z-index:999;
+    box-shadow: 2px 2px 4px 2px #000000;
+}
+.activity h2{            
+    color:silver;
+    display: table-cell; 
+    vertical-align: middle; 
+    text-align: center;
+}
+/* Style the tab */
+.tab {
+    float: left;
+    border: 1px solid #ccc;
+    background-color: #f1f1f1;
+    width: 30%;
+    height: 300px;
+    overflow: scroll;
+}
+
+/* Style the buttons that are used to open the tab content */
+.tab button {
+    display: block;
+    background-color: inherit;
+    color: black;
+    padding: 22px 16px;
+    width: 100%;
+    border: none;
+    outline: none;
+    text-align: left;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+/* Change background color of buttons on hover */
+.tab button:hover {
+    background-color: #ddd;
+}
+
+/* Create an active/current "tab button" class */
+.tab button.active {
+    background-color: #ccc;
+}
+
+/* Style the tab content */
+.tabcontent {
+    float: left;
+    padding: 0px 12px;
+    border: 1px solid #ccc;
+    width: 70%;
+    border-left: none;
+    height: 300px;
+    text-align: center;
+}
+
+
+.displayinfo{
+    width:80%;
+    height:80%;
+    display:none;
+    position:fixed;
+    overflow-y: scroll;
+    border:2px solid black;
+    background-color: gray;
+    margin-left:100px;
+    z-index:999999;
+    }
+.places{
+    display:table;
+    background-position:center;
+    background-repeat:no-repeat;
+    text-align:center;
+    margin-bottom:5px;
+    background-size:cover;
+    box-shadow: 1px 1px 1px 1px #000000;
+    border-radius: 5px;
+    width:300px;
+    height:90px;
+    cursor:pointer;
+}
+.places h2{
+  
+  color:whitesmoke;
+  text-shadow:2px 2px 8px #000000;
+  font-size:20px;
+  font-family:Verdana, Geneva, Tahoma, sans-serif;
+  display: table-cell; 
+  vertical-align: middle; 
+  text-align: center;
+}
+.loc{
+  overflow-y:scroll;
+  height: 500px;
+}
+.wrapper{
+  width:1280px;
+}
+#searchbutton{
+  margin-bottom:5px;
+}
+/* * {box-sizing: border-box}*/
+
+.route{
+    margin-bottom:10px;
+}
+.addbutton{
+    margin:auto;
+}

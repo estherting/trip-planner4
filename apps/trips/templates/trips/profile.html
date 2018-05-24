@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    {% load static %}
+    <meta charset="utf-8">
+    <title>Travel Dashboard</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-beta/css/materialize.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-beta/js/materialize.min.js"></script>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="{% static 'trips/css/main.css' %}">     
+  </head>
+  <body>
+    <div class="background-profile">
+    <nav>
+      <a href="#" onclick="signOut();">Sign out</a>
+      <a href="/logout">Logout</a>
+      <p>Hello, {{user.first_name}}!</p>
+    </nav>
+
+    {% if messages %}
+    <ul class="messages">
+      {% for message in messages %}
+      <li{% if message.error %} class="{{ message.error }}"{% endif %}>{{ message }}</li>
+      {% endfor %}
+    </ul>
+    {% endif %}
+
+    <div class="container">
+      <div class="invited">
+        {% if trips_invited_to%}
+        <p>You are invited:</p>
+        {% for trip in trips_invited_to%}         
+          <form action="/trips/plan/{{trip.id}}/join" method='POST'>{%csrf_token%}
+            {{trip.title}}
+            <button type="submit" class="btn btn-light join-trip">Join</button>
+          </form>
+        {% endfor %}
+        {% endif %}
+      </div>
+
+      <h3>Your Trips</h3>
+      {% if trips%}
+      <table>
+        <thead>
+          <tr>
+            <th>Title</th>
+            <th>From</th>
+            <th>To</th>
+            <th>Description</th>
+          </tr>
+        </thead>
+        {%for trip in trips%}
+        <tr>
+          <td><a href="/trips/plan/{{trip.id}}">{{trip.title}}</a></td>
+          <td>{{trip.date_from}}</td>
+          <td>{{trip.date_to}}</td>
+          <td>{{trip.description}}</td>
+        </tr>
+        {%endfor%}
+      </table>
+      {%else%}
+      <p>You have no upcoming trips</p>
+      {% endif %}
+
+
+      <a href="/trips/new" id="add-link">Add Travel Plan</a>
+    </div>
+
+    <script>
+    function signOut() {
+      var auth2 = gapi.auth2.getAuthInstance();
+      auth2.signOut().then(function () {
+        console.log('User signed out.');
+      });
+    }
+    </script>
+    </div>
+  </body>
+</html>
