@@ -94,7 +94,7 @@ def plan(request, tripID):
     request.session['tripID'] = tripID
     #eventually just add a check to see if dayID is in session, and then use session to get back to the right tab
     request.session['dayID'] = 1
-    trip = Trip.objects.get(id = tripID)        
+    trip = Trip.objects.get(id = tripID)
     context = {
         'user': user,
         'trip': Trip.objects.get(id=tripID),
@@ -199,5 +199,6 @@ def addtoagenda(request):
         'agenda':thisagenda.activities.all()
     }
     return render(request, 'trips/agendacontents.html', context)
-    
 
+def returnDay(request):
+    return HttpResponse(request.session['dayID'])

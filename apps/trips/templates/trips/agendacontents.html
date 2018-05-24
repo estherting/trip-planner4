@@ -1,4 +1,4 @@
-<div class="tabcontents">
+
     {% for agenda in allagendas %}
     <div id="day{{agenda.day}}" class="tabcontent after">
       {% for activity in agenda.activities.all %}
@@ -8,10 +8,49 @@
     </div>
     {% endfor %}
     <script>
-        $(document).on("click","#day5",function(){
-            openAgenda(event, 'day5');
-            console.log("sjdkjalsdk")
+        // $(document).ready('click', '.tablinks', function(){
+        //   console.log("sjdkjalsdk")
+        //   $.ajax({
+        //     url: '/returnDay',
+        //     method: 'GET',
+        //     success: function(response){
+        //       $('#day' + response).click()
+        //     }
+        //   })
+        // })
+        var day
+
+
+        // $(document).on("click","#day5",function(){
+        //     // openAgenda(event, 'day5');
+        //     console.log("sjdkjalsdk")
+        //     $.ajax({
+        //       url: '/returnDay',
+        //       method: 'GET',
+        //       success: function(response){
+        //         day = response
+        //
+        //         console.log("HELOLEHLSKHEIIIIIIII:   " + day)
+        //         // $('#day' + response).click()
+        //         openAgenda(event, 'day'+day);
+        //       }
+        //     })
+        // })
+        // $("#day"+day).click()
+
+        $(document).ready(function(){
+            // openAgenda(event, 'day5');
+            console.log("DOCUMENT DOT ready")
+            $.ajax({
+              url: '/returnDay',
+              method: 'GET',
+              success: function(response){
+                day = response
+
+                console.log("HELOLEHLSKHEIIIIIIII:   " + day)
+                // $('#day' + response).click()
+                openAgenda(event, 'day'+day);
+              }
+            })
         })
-        $("#day5").click()
     </script>
-</div>

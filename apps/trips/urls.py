@@ -23,5 +23,6 @@ urlpatterns = [
     url(r'^trips/activity/add$', views.addactivity),
     url(r'^setdaysession/day(?P<dayID>\d+)$', views.setdaysession),
     url(r'^trips/activity/addtoagenda$', views.addtoagenda),
+    url(r'^returnDay$', views.returnDay),
 
 ]

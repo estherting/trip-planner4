@@ -76,9 +76,7 @@ function initAutocomplete() {
 
 $(document).ready(function(){
     $(document).on('click','#searchbutton',function(){
-        console.log("entered click")
-        console.log(lat)
-        console.log(lng)
+
         $.get("https://maps.googleapis.com/maps/api/place/nearbysearch/json?location="+lat+","+lng+"&radius=1500&type=attraction&photo_reference&key=" + api, function(res) {
             $('.loc').html('')
             data = res
@@ -104,7 +102,7 @@ $(document).ready(function(){
             test = res
             address = res.result.formatted_address
             imgref = res.result.photos
-            console.log(imgref)
+
             $('.displayinfo').html('')
             $('.displayinfo').append('<h1>'+res.result.name+'</h1>')
             for(var i = 0; i<imgref.length; i++){
@@ -123,13 +121,21 @@ $(document).ready(function(){
             method: 'post',
             data: $(this).parent().serialize(),
             success: function(response){
-                console.log("Received this from server:", response)
+
                 $('.proposed').html(response)
             }
         })
     })
     $(document).on('click','.agendaadd', function(e){
         e.preventDefault()
+        $.ajax({
+          url: '/returnDay',
+          method: 'GET',
+          success: function(response){
+            $('#day' + response).click()
+            $('#day' + response).click()
+          }
+        })
         $.ajax({
             url:'/trips/activity/addtoagenda',
             method: 'post',

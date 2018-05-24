@@ -5,11 +5,12 @@
     <title></title>
   </head>
   <body>
-    <div class="tabcontents">
+    
       <div id="day1" class="tabcontent">
         <div class="activity">Activity 1</div>
         <a href="#">Add activity</a>
       </div>
+
       {% for agenda in agendas %}
       <div id="day{{agenda.day}}" class="tabcontent after">
         <div class="activity">Activity 1</div>
