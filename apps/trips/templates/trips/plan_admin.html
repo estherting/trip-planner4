@@ -32,11 +32,11 @@
   {% endif %}
 
   <div class="container">
-    <h3>{{trip.title}}</h3>
+    <h3 id="trip-title">{{trip.title}}</h3>
     <aside>
       <!-- sidebar for adding friends etc  -->
     </aside>
-    <div>
+    <div class="map-buddies">
         <button id = "mapbutton" class="btn btn-primary">map</button>
         <a href="/trips/plan/{{trip.id}}/add_travelbuddy">Travel Buddies</a>
     </div>
@@ -50,7 +50,9 @@
         {% endfor %}
 
         <!-- <form action="/trips/plan/{{trip.id}}/new-agenda" method="POST">{%csrf_token%} -->
-          <button id="add-button">Add</button>
+          <div class="text-right">
+            <button id="add-button" class="btn btn-dark">Add</button>
+          </div>
         <!-- </form> -->
       </div>
 
@@ -72,6 +74,7 @@
         <h2>Proposed</h2>
         <div class = "proposed">
           {% for activity in suggestions %}
+
           <div class = 'places' style = 'background-image: url(https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&maxheight=400&photoreference={{activity.imgref}}&key=AIzaSyCebifdV4FaRD01lf61PoEXZ8v-icy4PD4)' placeid = "{{activity.result}}" >
             <h2>{{activity.location}}</h2>
           </div>
@@ -88,7 +91,7 @@
       </div>
       <div>
         <h2>Suggestions</h2>
-        <input id = "pac-input" type = "text" placeholder="search box">
+        <input id = "pac-input" type = "text" placeholder="Type a destination">
         <button id = "searchbutton" class= "btn waves-effect waves-light">Find Suggestions!</button>
         <div id="map"></div>
         <div class = "loc"></div>
