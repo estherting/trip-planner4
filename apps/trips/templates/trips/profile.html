@@ -1,37 +1,17 @@
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
   <head>
+    {% load static %}
     <meta charset="utf-8">
     <title>Travel Dashboard</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-beta/css/materialize.min.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-beta/js/materialize.min.js"></script>
-    <style>
-      .container {
-        margin: 30px;
-      }
-      nav a {
-        float: right;
-        margin-right: 100px;
-      }
-      nav p {
-        display: inline;
-        margin-left: 50px;
-      }
-      .invited {
-        border: 1px solid pink;
-        border-radius: 5px;
-        background-color: silver;
-      }
-      #add-link {
-        margin: 30px;
-        float: right;
-        font-size: 2em;
-      }
-    </style>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="{% static 'trips/css/main.css' %}">
   </head>
-  <body>
+  <body class="background-profile">
     <nav>
-      <a href="#" onclick="signOut();">Sign out</a>
+      
       <a href="/logout">Logout</a>
       <p>Hello, {{user.first_name}}!</p>
     </nav>
@@ -45,14 +25,14 @@
     {% endif %}
 
     <div class="container">
-      <div class="invited">
+      <div class="invited">         
         {% if trips_invited_to%}
         <p>You are invited:</p>
         {% for trip in trips_invited_to%}
-          {{trip.title}}
-          <form action="/trips/plan/{{trip.id}}/join" method='POST'>{%csrf_token%}
-            <button type="submit">Join</button>
-          </form>
+        <form action="/trips/plan/{{trip.id}}/join" method='POST'>{%csrf_token%}
+          <p class="invited-trip">{{trip.title}}</p>
+          <button type="submit" class="btn btn-outline-primary join-trip">Join</button>
+        </form>
         {% endfor %}
         {% endif %}
       </div>

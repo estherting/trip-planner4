@@ -1,32 +1,15 @@
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
   <head>
+    {% load static %}
     <meta charset="utf-8">
     <title>Login and Registration</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-beta/css/materialize.min.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-beta/js/materialize.min.js"></script>
-    <style>
-      body {
-        margin: 30px;
-      }
-      label{
-        display: block;
-      }
-      h1 {
-        text-align: center;
-      }
-      .block {
-        display: inline-block;
-        margin: 50px;
-        vertical-align: top;
-      }
-      .container {
-        margin: auto;
-        padding-left: 150px;
-      }
-    </style>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="{% static 'trips/css/main.css' %}">
   </head>
-  <body>
+  <body class="background-register">
     {% if messages %}
     <ul class="messages">
       {% for message in messages %}
@@ -35,9 +18,9 @@
     </ul>
     {% endif %}
 
-    <h1>Welcome!</h1>
+    <h1 id="register-title">&#164; WELCOME &#164;</h1>
     <div class="container">
-      <div class="block">
+      <div class="block register">
         <h2>Register</h2>
         <form action="/register/process" method="POST">{%csrf_token%}
           <label>
@@ -61,9 +44,11 @@
             Confirm Password:
             <input type="password" name="confirm_pw">
           </label>
-          <button type="submit">Register</button>
+          <div class="text-right">
+            <button type="submit" class="btn btn-primary">Register</button>
+          </div>
         </form>
-        <p>Already have an account?<a href="/"> Signin here</a></p>
+        <p>Already have an account?<a href="/"> Sign in here</a></p>
       </div>
 
     </div>

@@ -3,7 +3,7 @@ var data
 var test
 var lat
 var lng
-
+var imgsrcs=[]
 
 var CSRFToken = $('meta[name="csrf-token"]').attr('content')
 function initAutocomplete() {
@@ -90,30 +90,27 @@ $(document).ready(function(){
                     }
                     var resultid = res.results[e].place_id
 
-                    $('.loc').append("<div class = 'places' style = 'background-image: url(https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&maxheight=400&photoreference="+ imgref +"&key="+ api +")' thisid = " + resultid + " ><h2>" + res.results[e].name + "</h2></div><form><input type = 'hidden' name = 'csrfmiddlewaretoken' value = '" + CSRFToken +"'><input type = 'hidden' name = 'name' value = '" + res.results[e].name +"'><input type = 'hidden' name = 'lat' value ='"+lat+"'><input type = 'hidden' name = 'lng' value = '"+lng+"'><input type = 'hidden' name = 'resultid' value = '" + resultid +"'><input type = 'hidden' name = 'tripID' value = '"+tripID+"'><input type = 'hidden' name = 'imgref' value = '" + imgref + "'><button class = 'addbutton'>add</button></form>")
+
+                    
+                    $('.loc').append("<div class = 'places' style = 'background-image: url(https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&maxheight=400&photoreference="+ imgref +"&key="+ api +")' thisid = " + resultid + " ><h2>" + res.results[e].name + "</h2></div><form><input type = 'hidden' name = 'csrfmiddlewaretoken' value = '" + CSRFToken +"'><input type = 'hidden' name = 'name' value = '" + res.results[e].name +"'><input type = 'hidden' name = 'lat' value ='"+res.results[e].geometry.location.lat+"'><input type = 'hidden' name = 'lng' value = '"+res.results[e].geometry.location.lng+"'><input type = 'hidden' name = 'resultid' value = '" + resultid +"'><input type = 'hidden' name = 'tripID' value = '"+tripID+"'><input type = 'hidden' name = 'imgref' value = '" + imgref + "'><button class = 'addbutton'>add</button></form>")
+
                 }
             })
         }, "json");
     })
-    $(document).on('click','.places', function(){
-        var id = $(this).attr('thisid')
+    $(document).on('click','.places, .activity', function(){
+        var id = $(this).attr('placeid')
         $('.displayinfo').html('')
-        $.get("https://maps.googleapis.com/maps/api/place/details/json?placeid="+ id +"&key=" + api, function(res){
-            test = res
-            address = res.result.formatted_address
-            imgref = res.result.photos
-
-            $('.displayinfo').html('')
-            $('.displayinfo').append('<h1>'+res.result.name+'</h1>')
-            for(var i = 0; i<imgref.length; i++){
-                $('.displayinfo').append("<img class = 'myslides' src = 'https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&maxheight=400&photoreference="+ imgref[i].photo_reference +"&key="+ api +"'>")
+        $.ajax({
+            url: '/showplace/'+id,
+            success:function(serverResponse){
+                $('.displayinfo').html(serverResponse)
             }
-            /*  $('#photo-container').append("<button onclick = 'plusDivs(-1)'>&#10094;</button>")
-            $('#photo-container').append("<button onclick = 'plusDivs(-1)'>&#10095;</button>") */
-            $('.displayinfo').append('<p>' + res.result.formatted_address + '</p>')
         })
         $('.displayinfo').css("display","block")
     })
+
+
     $(document).on('click','.addbutton', function(e){
         e.preventDefault()
         $.ajax({
@@ -132,6 +129,7 @@ $(document).ready(function(){
           url: '/returnDay',
           method: 'GET',
           success: function(response){
+            $('.tabcontents').html("")
             $('#day' + response).click()
           }
         })

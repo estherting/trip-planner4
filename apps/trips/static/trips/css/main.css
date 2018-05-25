@@ -78,6 +78,7 @@ input[type=text]:focus{
     margin-top:15px;
     margin-bottom:15px;
     font-size:60px;
+    text-shadow:1px 1px #000000;
 }
 /*NAVIGATION*/
 nav{
@@ -95,8 +96,10 @@ nav p {
 .background-profile{
     width: 100%;
     min-height: 100%;
+    background: url("../images/boat.png") no-repeat center center fixed;
+    background-size:cover;
 }
-.background-profile::after {
+/* .background-profile::after {
     content: "";
     background: url("../images/boat.jpg") no-repeat center center fixed;
     background-size:cover;
@@ -107,7 +110,7 @@ nav p {
     right: 0;
     position: absolute;
     z-index: -1;
-  }
+  } */
 .container{
     margin:auto;
 }
@@ -120,13 +123,13 @@ nav p {
 .invited {
     width:20%;
     margin:20px 0px;
-    padding:15px;
-    border-radius: 5px;
-    background-color: rgba(214, 61, 67, 0.6);
-    color:whitesmoke;
-    text-align: center;
+}
+.invited-trip{
+    display: inline-block;
+    font-size:26px;
 }
 .join-trip{
+    vertical-align:top;
     display: inline-block;
     margin-left:10px;
 }
@@ -134,34 +137,38 @@ nav p {
 .background-trip{
     width: 100%;
     min-height: 100%;
-}
-.background-trip::after {
-    content: "";
-    background: url("../images/boat.jpg") no-repeat center center fixed;
+    background: url("../images/caves.jpg") no-repeat center center fixed;
     background-size:cover;
-    opacity: 0.3;
-    top: 0;
-    left: 0;
-    bottom: 0;
-    right: 0;
-    position: absolute;
-    z-index: -1;
+}
+
+/*MAIN*/
+.background-agenda{
+    width: 100%;
+    min-height: 100%;
+    background: url("../images/maintrip.jpg") no-repeat center center fixed;
+    background-size:cover;
 }
 main, section {
     display: inline-block;
     vertical-align: top;
 }
 main {
-    width: 70%;
+    width: 65%;
+    background-color: rgba(255,255,255, 0.6);
+    border-radius:5px;
+    height:838px;
+    margin-right:2.5%;
 }
-.proposed{
+.proposed-section{
+    padding:1.25%;
     width:30%;
+    background-color: rgba(255,255,255, 0.6);
+    border-radius:5px;
 }
 
 .background-trip h3{
     font-size:50px;
 }
-
 
 .activity{
     display: table;
@@ -190,8 +197,9 @@ main {
     float: left;
     border: 1px solid #ccc;
     background-color: #f1f1f1;
+    
     width: 30%;
-    height: 300px;
+    height: auto;
     overflow: scroll;
 }
 
@@ -223,10 +231,9 @@ main {
 .tabcontent {
     float: left;
     padding: 0px 12px;
-    border: 1px solid #ccc;
     width: 70%;
     border-left: none;
-    height: 300px;
+    height: 500px;
     text-align: center;
 }
 
@@ -267,7 +274,7 @@ main {
 }
 .loc{
   overflow-y:scroll;
-  height: 500px;
+  height: 400px;
 }
 .wrapper{
   width:1280px;
@@ -275,11 +282,71 @@ main {
 #searchbutton{
   margin-bottom:5px;
 }
-/* * {box-sizing: border-box}*/
-
 .route{
     margin-bottom:10px;
+    width:40px;
 }
 .addbutton{
     margin:auto;
+}
+
+.text-right{
+    margin-bottom:5px;
+}
+
+/*
+ESTHER'S CSS ON TRAVEL BUDDIES PAGE
+*/
+.user-status-box {
+  width: 300px;
+  height: 300px;
+  vertical-align: top;
+  display: inline-block;
+  margin-top: 100px;
+  margin-right: 60px;
+  background-color: #ffffff;
+  opacity: 0.6;
+  filter: alpha(opacity=60); /* For IE8 and earlier */
+  padding: 20px;
+  text-align: center;
+  border-radius: 10px;
+  overflow: scroll;
+}
+
+.back-link {
+  margin-top: 20px;
+  display: block;
+  color: white;
+  font-size: 1.2em;
+}
+
+.background {
+  content: "";
+  background-image: url("../images/taipei.jpg");
+  background-attachment: fixed;
+  background-repeat: no-repeat;
+  background-size: cover;
+  margin-top: -20px;
+  height:100%;
+}
+
+
+.container {
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.invite-form {
+  display: inline-block;
+  float: right;
+}
+
+.all-users-name {
+  display: inline-block;
+}
+.invite-button {
+  padding: 3px;
+  border-radius: 3px;
+  background-color: blue;
+  color: white;
 }
