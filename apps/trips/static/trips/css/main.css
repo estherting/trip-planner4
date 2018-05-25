@@ -78,6 +78,7 @@ input[type=text]:focus{
     margin-top:15px;
     margin-bottom:15px;
     font-size:60px;
+    text-shadow:1px 1px #000000;
 }
 /*NAVIGATION*/
 nav{
@@ -282,4 +283,75 @@ main {
 }
 .addbutton{
     margin:auto;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/*
+ESTHER'S CSS ON TRAVEL BUDDIES PAGE
+*/
+.user-status-box {
+  width: 300px;
+  height: 300px;
+  vertical-align: top;
+  display: inline-block;
+  margin-top: 100px;
+  margin-right: 60px;
+  background-color: #ffffff;
+  opacity: 0.6;
+  filter: alpha(opacity=60); /* For IE8 and earlier */
+  padding: 20px;
+  text-align: center;
+  border-radius: 10px;
+  overflow: scroll;
+}
+
+.back-link {
+  margin-top: 20px;
+  display: block;
+  color: white;
+  font-size: 1.2em;
+}
+
+.background {
+  content: "";
+  background-image: url("../images/taipei.jpg");
+  background-attachment: fixed;
+  background-repeat: no-repeat;
+  background-size: cover;
+  margin-top: -20px;
+  height:100%;
+}
+
+
+.container {
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.invite-form {
+  display: inline-block;
+  float: right;
+}
+
+.all-users-name {
+  display: inline-block;
+}
+.invite-button {
+  padding: 3px;
+  border-radius: 3px;
+  background-color: blue;
+  color: white;
 }
