@@ -133,7 +133,6 @@ $(document).ready(function(){
           method: 'GET',
           success: function(response){
             $('#day' + response).click()
-            $('#day' + response).click()
           }
         })
         $.ajax({
@@ -155,5 +154,29 @@ $(document).ready(function(){
 
     $('.displayinfo').click(function(event){
         event.stopPropagation();
+    })
+    $(document).on('click','#mapbutton',function(e){
+        e.preventDefault()
+        $.ajax({
+            url: '/showmap',
+            success: function(serverResponse){
+                console.log('success. serverResponse', serverResponse)
+                $('.displayinfo').html(serverResponse)
+            }
+        })
+        $(".displayinfo").css('display','block')
+    })
+    $(document).on('click','#routebutton',function(e){
+        e.preventDefault()
+        var start = $(this).prev().attr('placeid')
+        var end = $(this).next().attr('placeid')
+        $.ajax({
+            url: '/showroute/'+start+'/'+end,
+            success:function(serverResponse){
+                console.log('success. serverResponse', serverResponse)
+                $('.displayinfo').html(serverResponse)
+            }
+        })
+        $(".displayinfo").css('display','block')
     })
 })

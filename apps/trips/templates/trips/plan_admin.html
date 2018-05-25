@@ -9,133 +9,10 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-beta/css/materialize.min.css">
   <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-beta/js/materialize.min.js"></script>
   <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+  <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAzgRKlW8A7Bgf5ywmvgtKtooX8YhKbm9U&libraries=places&callback=initAutocomplete"async defer></script>
   <script src="{% static 'trips/js/suggestions.js' %}"></script>
-  <style>
-    * {box-sizing: border-box}
-    .container {
-      margin: 30px;
-      width: 1200px;
-    }
-    main, section {
-      display: inline-block;
-      vertical-align: top;
-    }
-    main {
-      width: 500px;
-    }
-    section {
-      width: 300px;
-      margin: 50px;
-    }
-    nav a {
-      float: right;
-      margin-right: 100px;
-    }
-    nav p {
-      display: inline;
-      margin-left: 50px;
-    }
-    .activity {
-      margin: 20px;
-      background-color: pink;
-      border-radius: 5px;
-      height: 50px;
-      text-align: center;
-      padding: 10px;
-    }
-    #add-link {
-      margin: 30px;
-      float: right;
-      font-size: 2em;
-    }
-
-    /* Style the tab */
-    .tab {
-        float: left;
-        border: 1px solid #ccc;
-        background-color: #f1f1f1;
-        width: 30%;
-        height: 300px;
-        overflow: scroll;
-    }
-
-    /* Style the buttons that are used to open the tab content */
-    .tab button {
-        display: block;
-        background-color: inherit;
-        color: black;
-        padding: 22px 16px;
-        width: 100%;
-        border: none;
-        outline: none;
-        text-align: left;
-        cursor: pointer;
-        transition: 0.3s;
-    }
-
-    /* Change background color of buttons on hover */
-    .tab button:hover {
-        background-color: #ddd;
-    }
-
-    /* Create an active/current "tab button" class */
-    .tab button.active {
-        background-color: #ccc;
-    }
-
-    /* Style the tab content */
-    .tabcontent {
-        float: left;
-        padding: 0px 12px;
-        border: 1px solid #ccc;
-        width: 70%;
-        border-left: none;
-        height: 300px;
-        text-align: center;
-    }
-
-
-    .displayinfo{
-        width:80%;
-        height:80%;
-        display:none;
-        position:fixed;
-        overflow-y: scroll;
-        border:2px solid black;
-        background-color: gray;
-        margin-left:100px;
-        z-index:999999;
-        }
-    .places{
-      background-position:center;
-      background-repeat:no-repeat;
-      text-align:center;
-      margin-bottom:5px;
-      background-size:cover;
-      box-shadow: 1px 1px 1px 1px #000000;
-      border-radius: 5px;
-      width:300px;
-      height:90px;
-    }
-    .places h2{
-      line-height:90px;
-      color:whitesmoke;
-      text-shadow:2px 2px 8px #000000;
-      font-size:20px;
-      font-family:Verdana, Geneva, Tahoma, sans-serif;
-    }
-    .loc{
-      overflow-y:scroll;
-      height: 500px;
-    }
-    .wrapper{
-      width:1280px;
-    }
-    #searchbutton{
-      margin-bottom:5px;
-    }
-  </style>
-
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css">
+  <link rel="stylesheet" href="{% static 'trips/css/main.css' %}">
 </head>
 
 <body>
@@ -161,6 +38,8 @@
     </aside>
 
     <main>
+        <span class="fi-map-marker"></span>
+      <button id = "mapbutton" class="btn btn-primary">map</button>
       <a href="/trips/plan/{{trip.id}}/add_travelbuddy">Travel Buddies</a>
       <h2>Agenda</h2>
       <!-- Tab links -->
@@ -180,26 +59,25 @@
         {% for agenda in allagendas %}
         <div id="day{{agenda.day}}" class="tabcontent after">
           {% for activity in agenda.activities.all %}
-          <div class="activity">{{activity.location}}</div>
+          <button id = "routebutton" class="route btn btn-primary">route</button>
+          <div class="activity" placeid = '{{activity.result}}'><h2 class="text">{{activity.location}}</h2></div>
           {% endfor %}
-          <a href="#">Add activity</a>
+          <a href="#" class="btn btn-info">Add activity</a>
         </div>
         {% endfor %}
       </div>
-    </main>
-
-    <section>
+    </main><section>
       <div>
         <h2>Proposed</h2>
         <div class = "proposed">
           {% for activity in suggestions %}
-          <div class = 'places' style = 'background-image: url(https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&maxheight=400&photoreference={{activity.imgref}}&key=AIzaSyAzgRKlW8A7Bgf5ywmvgtKtooX8YhKbm9U)' thisid = " + resultid + " >
+          <div class = 'places' style = 'background-image: url(https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&maxheight=400&photoreference={{activity.imgref}}&key=AIzaSyAzgRKlW8A7Bgf5ywmvgtKtooX8YhKbm9U)' thisid = "{{activity.result}}" >
             <h2>{{activity.location}}</h2>
           </div>
           <form>
             {% csrf_token %}
             <input type = 'hidden' name = 'id' value = {{activity.id}}>
-            <button class = 'agendaadd'>add to agenda</button>
+            <button class = 'agendaadd btn btn-info'>add to agenda</button>
           </form>
           {% endfor %}
         </div>
@@ -255,7 +133,7 @@
       for (i = 0; i < tablinks.length; i++) {
           tablinks[i].className = tablinks[i].className.replace(" active", "");
       }
-      
+
       // Show the current tab, and add an "active" class to the button that opened the tab
       document.getElementById(day).style.display = "block";
       evt.currentTarget.className += " active";
@@ -267,7 +145,7 @@
     }
     // Get the element with id="defaultOpen" and click on it
     document.getElementById("defaultOpen").click();
-    
+
     // Trying to get the tabs to stay when page is refreshed
     // $(document).on('click', 'defaultOpen', function(){
     //   $.ajax({

@@ -1,6 +1,6 @@
 <div class = "proposed">
     {% for activity in activities %}
-    <div class = 'places' style = 'background-image: url(https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&maxheight=400&photoreference={{activity.imgref}}&key=AIzaSyAzgRKlW8A7Bgf5ywmvgtKtooX8YhKbm9U)' thisid = " + resultid + " >
+    <div class = 'places' style = 'background-image: url(https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&maxheight=400&photoreference={{activity.imgref}}&key=AIzaSyAzgRKlW8A7Bgf5ywmvgtKtooX8YhKbm9U)' thisid = "{{activity.result}}" >
       <h2>{{activity.location}}</h2>
     </div>
     <form>

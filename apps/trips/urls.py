@@ -23,6 +23,8 @@ urlpatterns = [
     url(r'^trips/activity/add$', views.addactivity),
     url(r'^setdaysession/day(?P<dayID>\d+)$', views.setdaysession),
     url(r'^trips/activity/addtoagenda$', views.addtoagenda),
+    url(r'^showmap$', views.showmap),
+    url(r'^showroute/(?P<start>[A-Za-z0-9\-\_]+)/(?P<end>[A-Za-z0-9\-\_]+)$', views.showroute),
     url(r'^returnDay$', views.returnDay),
 
 ]
