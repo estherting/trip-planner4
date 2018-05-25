@@ -3,51 +3,16 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="csrf-token" content="{{ csrf_token }}">
     <title>Travel Dashboard</title>
+    {% load static %}
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-beta/css/materialize.min.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-beta/js/materialize.min.js"></script>
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
-
-    <style>
-      * {box-sizing: border-box}
-      .container {
-        margin: 30px;
-      }
-      main, section {
-        display: inline-block;
-      }
-      main {
-        width: 500px;
-      }
-      section {
-        width: 300px;
-        margin: 50px;
-      }
-      nav a {
-        float: right;
-        margin-right: 100px;
-      }
-      nav p {
-        display: inline;
-        margin-left: 50px;
-      }
-      .activity {
-        margin: 20px;
-        background-color: pink;
-        border-radius: 5px;
-        height: 50px;
-        text-align: center;
-        padding: 10px;
-      }
-      #add-link {
-        margin: 30px;
-        float: right;
-        font-size: 2em;
-      }
-
-
-    </style>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAzgRKlW8A7Bgf5ywmvgtKtooX8YhKbm9U&libraries=places&callback=initAutocomplete"async defer></script>
+    <script src="{% static 'trips/js/suggestions.js' %}"></script>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="{% static 'trips/css/main.css' %}">
 
   </head>
   <body>
@@ -56,28 +21,33 @@
       <a href="/profile">Home</a>
       <p>Hello, {{user_signed_in.first_name}}!</p>
     </nav>
+    <div class=background>
+      <div class="container">
+        {% if messages %}
+        <ul class="messages">
+          {% for message in messages %}
+          <li{% if message.error %} class="{{ message.error }}"{% endif %}>{{ message }}</li>
+          {% endfor %}
+        </ul>
+        {% endif %}
 
-    <div class="container">
-      {% if messages %}
-      <ul class="messages">
-        {% for message in messages %}
-        <li{% if message.error %} class="{{ message.error }}"{% endif %}>{{ message }}</li>
-        {% endfor %}
-      </ul>
-      {% endif %}
+        <a href="/trips/plan/{{trip.id}}" class="back-link">Back to Trip</a>
 
-      <a href="/trips/plan/{{trip.id}}">Back to Trip</a>
-      
+        <div class="user-status-box">
+            <h2>Attending</h2>
+            {% for user in attended_by %}
+            <p>{{user.first_name}} {{user.last_name}}</p>
+            {% endfor %}
+        </div>
 
-      <h2>Invited</h2>
-      {% for user in invited%}
-      <p>{{user.first_name}} {{user.last_name}}</p>
-      {% endfor %}
+        <div class="user-status-box">
+          <h2>Invited</h2>
+          {% for user in invited%}
+          <p>{{user.first_name}} {{user.last_name}}</p>
+          {% endfor %}
+        </div>
 
-      <h2>Attending</h2>
-      {% for user in attended_by %}
-      <p>{{user.first_name}} {{user.last_name}}</p>
-      {% endfor %}
+      </div>
     </div>
   </body>
 </html>
