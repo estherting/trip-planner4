@@ -137,19 +137,11 @@ nav p {
 .background-trip{
     width: 100%;
     min-height: 100%;
-}
-.background-trip::after {
-    content: "";
-    background: url("../images/boat.jpg") no-repeat center center fixed;
+    background: url("../images/caves.jpg") no-repeat center center fixed;
     background-size:cover;
-    opacity: 0.3;
-    top: 0;
-    left: 0;
-    bottom: 0;
-    right: 0;
-    position: absolute;
-    z-index: -1;
 }
+
+/*MAIN*/
 main, section {
     display: inline-block;
     vertical-align: top;
@@ -164,7 +156,6 @@ main {
 .background-trip h3{
     font-size:50px;
 }
-
 
 .activity{
     display: table;

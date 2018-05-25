@@ -1,21 +1,15 @@
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
   <head>
+    {% load static %}
     <meta charset="utf-8">
     <title>Travel Dashboard</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-beta/css/materialize.min.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-beta/js/materialize.min.js"></script>
-    <style>
-      nav a {
-        float: right;
-        margin-right: 30px;
-      }
-      label {
-        display: block;
-      }
-    </style>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="{% static 'trips/css/main.css' %}">
   </head>
-  <body>
+  <body class="background-trip">
     <nav>
       <a href="/logout">Logout</a>
       <a href="/profile">Home</a>
@@ -27,9 +21,10 @@
       {% endfor %}
     </ul>
     {% endif %}
-
+    <h1 id="register-title">&#164; DREAM ON &#164;</h1>
     <div class="container">
-      <h1>Add a Trip</h1>
+      <div class="block register">
+      <h2>Add a Trip</h2>
       <form action="/trips/new/process" method="POST">{%csrf_token%}
         <label>
           Trip Title:
@@ -47,8 +42,11 @@
           To:
           <input name="date_to" type="date">
         </label>
-        <button type="submit">Let's go places!</button>
+        <div class="text-right">
+          <button type="submit" class="btn btn-primary">Let's go places!</button>
+        </div>
       </form>
+      </div>
     </div>
   </body>
 </html>
