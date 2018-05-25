@@ -26,5 +26,6 @@ urlpatterns = [
     url(r'^showmap$', views.showmap),
     url(r'^showroute/(?P<start>[A-Za-z0-9\-\_]+)/(?P<end>[A-Za-z0-9\-\_]+)$', views.showroute),
     url(r'^returnDay$', views.returnDay),
+    url(r'^showplace/(?P<id>[A-Za-z0-9\-\_]+)$', views.showplace),
 
 ]
