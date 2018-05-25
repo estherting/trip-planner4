@@ -217,3 +217,9 @@ def showroute(request,start,end):
         'end':end,
     }
     return render(request, "trips/route.html",context)
+
+def showplace(request,id):
+    context = {
+        'id' : id,
+    }
+    return render(request, "trips/place.html",context)
