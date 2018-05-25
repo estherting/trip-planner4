@@ -3,7 +3,7 @@
     <div id="day{{agenda.day}}" class="tabcontent after">
       {% for activity in agenda.activities.all %}
       <button id = "routebutton" class="route btn btn-primary">route</button>
-      <div class="activity" placeid = '{{activity.result}}' style = 'background-image: url(https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&maxheight=400&photoreference={{activity.imgref}}&key=AIzaSyAzgRKlW8A7Bgf5ywmvgtKtooX8YhKbm9U')><h2 class="text">{{activity.location}}</h2></div>
+      <div class="activity" placeid = '{{activity.result}}' style = 'background-image: url(https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&maxheight=400&photoreference={{activity.imgref}}&key=AIzaSyCebifdV4FaRD01lf61PoEXZ8v-icy4PD4')><h2 class="text">{{activity.location}}</h2></div>
       {% endfor %}
       <a href="#">Add activity</a>
     </div>

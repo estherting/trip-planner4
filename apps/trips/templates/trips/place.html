@@ -1,10 +1,32 @@
-<h1 id = "placeheader"></h1>
-<div class = "myslides"></div>
-<div id = "placeaddress"></div>
+<style>
+    #stuff{
+        width:100%;
+        text-align:center
+    }
+    .reviewimage{
+        height:40px;
+    }
+    .myslides{
+        height:300px;
+    }
+    .thisplaceimage{
+        height:300px;
+    }
+    .review{
+        width:80%;
+        margin-left:60px;
+        margin-bottom:60px;
+    }
+</style>
+<div id = "stuff">
+    <h1 id = "placeheader"></h1>
+    <div class = "myslides"></div>
+    <div id = "placeaddress"></div>
+</div>
 <div id = "reviews"></div>
 
 <script>
-    var api = 'AIzaSyAzgRKlW8A7Bgf5ywmvgtKtooX8YhKbm9U'
+    var api = 'AIzaSyCebifdV4FaRD01lf61PoEXZ8v-icy4PD4'
     var imgsrcs = []
     var count = 0
     var test
@@ -23,7 +45,7 @@
         reviews = res.result.reviews
         console.log(reviews.length)
         for(var i = 0; i<reviews.length; i++){ 
-            $('#reviews').append("<div class = 'review'><img src = "+ reviews[i].profile_photo_url +"><p>Author Name:  <a href="+reviews[i].author_url+">"+reviews[i].author_name + "</a></p><p>Rating: "+ reviews[i].rating +"</p><p>"+reviews[i].text+"</div>")
+            $('#reviews').append("<div class = 'review'><p><img class = 'reviewimage' src = "+ reviews[i].profile_photo_url +">Author Name:  <a href="+reviews[i].author_url+">"+reviews[i].author_name + "</a></p><p>Rating: "+ reviews[i].rating +"</p><p>"+reviews[i].text+"</div>")
         }
 
     })
