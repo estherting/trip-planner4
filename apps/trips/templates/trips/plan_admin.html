@@ -15,7 +15,7 @@
   <link rel="stylesheet" href="{% static 'trips/css/main.css' %}">
 </head>
 
-<body>
+<body class="background-agenda">
   <div class = "displayinfo"></div>
   <nav>
     <a href="/logout">Logout</a>
@@ -36,11 +36,11 @@
     <aside>
       <!-- sidebar for adding friends etc  -->
     </aside>
-
-    <main>
-        <span class="fi-map-marker"></span>
-      <button id = "mapbutton" class="btn btn-primary">map</button>
-      <a href="/trips/plan/{{trip.id}}/add_travelbuddy">Travel Buddies</a>
+    <div>
+        <button id = "mapbutton" class="btn btn-primary">map</button>
+        <a href="/trips/plan/{{trip.id}}/add_travelbuddy">Travel Buddies</a>
+    </div>
+    <main>  
       <h2>Agenda</h2>
       <!-- Tab links -->
       <div class="tab">
@@ -59,14 +59,14 @@
         {% for agenda in allagendas %}
         <div id="day{{agenda.day}}" class="tabcontent after">
           {% for activity in agenda.activities.all %}
-          <button id = "routebutton" class="route btn btn-primary">route</button>
+          <img id = "routebutton" class="route" src="../../static/trips/images/route2.png"> view route</img>
           <div class="activity" placeid = '{{activity.result}}'><h2 class="text">{{activity.location}}</h2></div>
           {% endfor %}
-          <a href="#" class="btn btn-info">Add activity</a>
+          <!-- <a href="#" class="btn btn-info">Add activity</a> -->
         </div>
         {% endfor %}
       </div>
-    </main><section>
+    </main><section class="proposed-section">
       <div>
         <h2>Proposed</h2>
         <div class = "proposed">
@@ -77,11 +77,13 @@
           <form>
             {% csrf_token %}
             <input type = 'hidden' name = 'id' value = {{activity.id}}>
-            <button class = 'agendaadd btn btn-info'>add to agenda</button>
+            <div class="text-right">
+              <button class = 'agendaadd btn btn-dark'>add to agenda</button>
+            </div>
           </form>
           {% endfor %}
         </div>
-        <button id = "activitybutton" class= "btn waves-effect waves-light">add activity</button>
+       <!--  <button id = "activitybutton" class= "btn waves-effect waves-light">add activity</button> -->
       </div>
       <div>
         <h2>Suggestions</h2>

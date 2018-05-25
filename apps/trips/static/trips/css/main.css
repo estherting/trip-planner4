@@ -142,15 +142,28 @@ nav p {
 }
 
 /*MAIN*/
+.background-agenda{
+    width: 100%;
+    min-height: 100%;
+    background: url("../images/maintrip.jpg") no-repeat center center fixed;
+    background-size:cover;
+}
 main, section {
     display: inline-block;
     vertical-align: top;
 }
 main {
-    width: 70%;
+    width: 65%;
+    background-color: rgba(255,255,255, 0.6);
+    border-radius:5px;
+    height:838px;
+    margin-right:2.5%;
 }
-.proposed{
+.proposed-section{
+    padding:1.25%;
     width:30%;
+    background-color: rgba(255,255,255, 0.6);
+    border-radius:5px;
 }
 
 .background-trip h3{
@@ -184,8 +197,9 @@ main {
     float: left;
     border: 1px solid #ccc;
     background-color: #f1f1f1;
+    
     width: 30%;
-    height: 300px;
+    height: auto;
     overflow: scroll;
 }
 
@@ -217,10 +231,9 @@ main {
 .tabcontent {
     float: left;
     padding: 0px 12px;
-    border: 1px solid #ccc;
     width: 70%;
     border-left: none;
-    height: 300px;
+    height: 500px;
     text-align: center;
 }
 
@@ -261,7 +274,7 @@ main {
 }
 .loc{
   overflow-y:scroll;
-  height: 500px;
+  height: 400px;
 }
 .wrapper{
   width:1280px;
@@ -269,11 +282,13 @@ main {
 #searchbutton{
   margin-bottom:5px;
 }
-/* * {box-sizing: border-box}*/
-
 .route{
     margin-bottom:10px;
+    width:40px;
 }
 .addbutton{
     margin:auto;
+}
+.text-right{
+    margin-bottom:5px;
 }
