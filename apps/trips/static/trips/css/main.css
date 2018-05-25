@@ -96,8 +96,10 @@ nav p {
 .background-profile{
     width: 100%;
     min-height: 100%;
+    background: url("../images/boat.png") no-repeat center center fixed;
+    background-size:cover;
 }
-.background-profile::after {
+/* .background-profile::after {
     content: "";
     background: url("../images/boat.jpg") no-repeat center center fixed;
     background-size:cover;
@@ -108,7 +110,7 @@ nav p {
     right: 0;
     position: absolute;
     z-index: -1;
-  }
+  } */
 .container{
     margin:auto;
 }
@@ -121,13 +123,13 @@ nav p {
 .invited {
     width:20%;
     margin:20px 0px;
-    padding:15px;
-    border-radius: 5px;
-    background-color: rgba(214, 61, 67, 0.6);
-    color:whitesmoke;
-    text-align: center;
+}
+.invited-trip{
+    display: inline-block;
+    font-size:26px;
 }
 .join-trip{
+    vertical-align:top;
     display: inline-block;
     margin-left:10px;
 }
