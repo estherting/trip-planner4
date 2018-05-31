@@ -4,7 +4,6 @@ from . import views
 urlpatterns = [
     url(r'^$', views.index),
     url(r'^signin', views.signin),
-    url(r'^signin/google$', views.googleSignin),
     url(r'^register$', views.register),
     url(r'^register/process$', views.register_process),
     url(r'^profile$', views.profile),
@@ -18,7 +17,6 @@ urlpatterns = [
     url(r'^trips/plan/(?P<tripID>\d+)/add_travelbuddy/(?P<userID>\d+)/process$', views.addTravelBuddy_process),
     url(r'^trips/plan/(?P<tripID>\d+)/join$', views.joinTrip),
     url(r'^logout$', views.logout),
-    url(r'^try$', views.tryIt),
     url(r'^gettripid$', views.gettripid),
     url(r'^trips/activity/add$', views.addactivity),
     url(r'^setdaysession/day(?P<dayID>\d+)$', views.setdaysession),
@@ -27,5 +25,4 @@ urlpatterns = [
     url(r'^showroute/(?P<start>[A-Za-z0-9\-\_]+)/(?P<end>[A-Za-z0-9\-\_]+)$', views.showroute),
     url(r'^returnDay$', views.returnDay),
     url(r'^showplace/(?P<id>[A-Za-z0-9\-\_]+)$', views.showplace),
-
 ]

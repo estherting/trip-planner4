@@ -1,55 +1,22 @@
-
-    {% for agenda in allagendas %}
-    <div id="day{{agenda.day}}" class="tabcontent after">
-      {% for activity in agenda.activities.all %}
-      <img id = "routebutton" class="route" src="../../static/trips/images/route2.png"> view route</img>
-      <div class="activity" placeid = '{{activity.result}}' style = 'background-image: url(https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&maxheight=400&photoreference={{activity.imgref}}&key=AIzaSyCebifdV4FaRD01lf61PoEXZ8v-icy4PD4')><h2 class="text">{{activity.location}}</h2></div>
-      {% endfor %}
-      <a href="#">Add activity</a>
-    </div>
-    {% endfor %}
-    <script>
-        // $(document).ready('click', '.tablinks', function(){
-        //   console.log("sjdkjalsdk")
-        //   $.ajax({
-        //     url: '/returnDay',
-        //     method: 'GET',
-        //     success: function(response){
-        //       $('#day' + response).click()
-        //     }
-        //   })
-        // })
-        var day
-        // $(document).on("click","#day5",function(){
-        //     // openAgenda(event, 'day5');
-        //     console.log("sjdkjalsdk")
-        //     $.ajax({
-        //       url: '/returnDay',
-        //       method: 'GET',
-        //       success: function(response){
-        //         day = response
-        //
-        //         console.log("HELOLEHLSKHEIIIIIIII:   " + day)
-        //         // $('#day' + response).click()
-        //         openAgenda(event, 'day'+day);
-        //       }
-        //     })
-        // })
-        // $("#day"+day).click()
-
-        $(document).ready(function(){
-            // openAgenda(event, 'day5');
-            console.log("DOCUMENT DOT ready")
-            $.ajax({
-              url: '/returnDay',
-              method: 'GET',
-              success: function(response){
-                day = response
-
-                console.log("HELOLEHLSKHEIIIIIIII:   " + day)
-                // $('#day' + response).click()
-                openAgenda(event, 'day'+day);
-              }
-            })
+{% for agenda in allagendas %}
+<div id="day{{agenda.day}}" class="tabcontent after">
+  {% for activity in agenda.activities.all %}
+  <img id = "routebutton" class="route" src="../../static/trips/images/route2.png"> view route</img>
+  <div class="activity" placeid = '{{activity.result}}' style = 'background-image: url(https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&maxheight=400&photoreference={{activity.imgref}}&key=AIzaSyCebifdV4FaRD01lf61PoEXZ8v-icy4PD4')><h2 class="text">{{activity.location}}</h2></div>
+  {% endfor %}
+  <a href="#">Add activity</a>
+</div>
+{% endfor %}
+<script>
+    var day
+    $(document).ready(function(){
+        $.ajax({
+          url: '/returnDay',
+          method: 'GET',
+          success: function(response){
+            day = response
+            openAgenda(event, 'day'+day);
+          }
         })
-    </script>
+    })
+</script>
