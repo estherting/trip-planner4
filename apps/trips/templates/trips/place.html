@@ -35,20 +35,18 @@
         test = res
         var address = res.result.formatted_address
         var imgref = res.result.photos
-        for(var i = 0; i<imgref.length; i++){ 
+        for(var i = 0; i<imgref.length; i++){
             imgsrcs.push("https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&maxheight=400&photoreference="+ imgref[i].photo_reference +"&key="+ api)
         }
-        console.log(imgsrcs.length)
         $('#placeheader').html(test.result.name )
         $('.myslides').append("<img class = 'thisplaceimage' src = " + imgsrcs[0] +">")
         $('#placeaddress').append('<p>' + res.result.formatted_address + '</p>')
         reviews = res.result.reviews
-        console.log(reviews.length)
-        for(var i = 0; i<reviews.length; i++){ 
+        for(var i = 0; i<reviews.length; i++){
             $('#reviews').append("<div class = 'review'><p><img class = 'reviewimage' src = "+ reviews[i].profile_photo_url +">Author Name:  <a href="+reviews[i].author_url+">"+reviews[i].author_name + "</a></p><p>Rating: "+ reviews[i].rating +"</p><p>"+reviews[i].text+"</div>")
         }
-
     })
+
     $('.displayinfo').on('click','.thisplaceimage',function(){
         count++
         if(count > imgsrcs.length){
@@ -56,5 +54,4 @@
         }
         $('.thisplaceimage').attr('src', imgsrcs[count])
     })
-
 </script>

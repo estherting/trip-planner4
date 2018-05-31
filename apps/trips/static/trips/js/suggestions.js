@@ -42,7 +42,6 @@ function initAutocomplete() {
     var bounds = new google.maps.LatLngBounds();
     places.forEach(function(place) {
         if (!place.geometry) {
-        console.log("Returned place contains no geometry");
         return;
         }
         var icon = {
@@ -76,7 +75,6 @@ function initAutocomplete() {
 
 $(document).ready(function(){
     $(document).on('click','#searchbutton',function(){
-
         $.get("https://maps.googleapis.com/maps/api/place/nearbysearch/json?location="+lat+","+lng+"&radius=1500&type=attraction&photo_reference&key=" + api, function(res) {
             $('.loc').html('')
             data = res
@@ -89,15 +87,12 @@ $(document).ready(function(){
                         imgref = res.results[e].photos[0].photo_reference
                     }
                     var resultid = res.results[e].place_id
-
-
-                    
                     $('.loc').append("<div class = 'places' id= 'sug-fix' style = 'background-image: url(https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&maxheight=400&photoreference="+ imgref +"&key="+ api +")' placeid = " + resultid + " ><h2>" + res.results[e].name + "</h2></div><form><input type = 'hidden' name = 'csrfmiddlewaretoken' value = '" + CSRFToken +"'><input type = 'hidden' name = 'name' value = '" + res.results[e].name +"'><input type = 'hidden' name = 'lat' value ='"+res.results[e].geometry.location.lat+"'><input type = 'hidden' name = 'lng' value = '"+res.results[e].geometry.location.lng+"'><input type = 'hidden' name = 'resultid' value = '" + resultid +"'><input type = 'hidden' name = 'tripID' value = '"+tripID+"'><input type = 'hidden' name = 'imgref' value = '" + imgref + "'><button class = 'addbutton'>add</button></form>")
-
                 }
             })
         }, "json");
     })
+
     $(document).on('click','.places, .activity', function(){
         var id = $(this).attr('placeid')
         $('.displayinfo').html('')
@@ -110,7 +105,6 @@ $(document).ready(function(){
         $('.displayinfo').css("display","block")
     })
 
-
     $(document).on('click','.addbutton', function(e){
         e.preventDefault()
         $.ajax({
@@ -118,11 +112,11 @@ $(document).ready(function(){
             method: 'post',
             data: $(this).parent().serialize(),
             success: function(response){
-
                 $('.proposed').html(response)
             }
         })
     })
+
     $(document).on('click','.agendaadd', function(e){
         e.preventDefault()
         $.ajax({
@@ -141,7 +135,6 @@ $(document).ready(function(){
                 //console.log("Received this from server:", response)
                 $('.tabcontents').html(response)
                 $(document).on("click", "#day6" , function() {
-                    console.log("i was clicked!")
                 });
             }
         })
@@ -158,7 +151,6 @@ $(document).ready(function(){
         $.ajax({
             url: '/showmap',
             success: function(serverResponse){
-                console.log('success. serverResponse', serverResponse)
                 $('.displayinfo').html(serverResponse)
             }
         })
@@ -171,7 +163,6 @@ $(document).ready(function(){
         $.ajax({
             url: '/showroute/'+start+'/'+end,
             success:function(serverResponse){
-                console.log('success. serverResponse', serverResponse)
                 $('.displayinfo').html(serverResponse)
             }
         })

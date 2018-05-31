@@ -13,8 +13,8 @@
     <script src="{% static 'trips/js/suggestions.js' %}"></script>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css">
     <link rel="stylesheet" href="{% static 'trips/css/main.css' %}">
-
   </head>
+  
   <body>
     <nav>
       <a href="/logout">Logout</a>
@@ -34,12 +34,10 @@
         <a href="/trips/plan/{{trip.id}}" class="back-link">Back to Trip</a>
 
         <div class="user-status-box">
-
             <h2>Attending</h2>
             {% for user in attended_by %}
             <p>{{user.first_name}} {{user.last_name}}</p>
             {% endfor %}
-
         </div>
 
         <div class="user-status-box">

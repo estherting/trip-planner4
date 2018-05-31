@@ -9,9 +9,9 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css">
     <link rel="stylesheet" href="{% static 'trips/css/main.css' %}">
   </head>
+
   <body class="background-profile">
     <nav>
-      
       <a href="/logout">Logout</a>
       <p>Hello, {{user.first_name}}!</p>
     </nav>
@@ -25,7 +25,7 @@
     {% endif %}
 
     <div class="container">
-      <div class="invited">         
+      <div class="invited">
         {% if trips_invited_to%}
         <p>You are invited:</p>
         {% for trip in trips_invited_to%}
@@ -61,17 +61,7 @@
       <p>You have no upcoming trips</p>
       {% endif %}
 
-
       <a href="/trips/new" id="add-link">Add Travel Plan</a>
     </div>
-
-    <script>
-    function signOut() {
-      var auth2 = gapi.auth2.getAuthInstance();
-      auth2.signOut().then(function () {
-        console.log('User signed out.');
-      });
-    }
-    </script>
   </body>
 </html>
